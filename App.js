@@ -5,83 +5,92 @@
  * @format
  * @flow
  */
-'use strict';
+"use strict";
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Linking, TouchableOpacity} from 'react-native';
-import QRCodeScanner from 'react-native-qrcode-scanner';
+import React, { Component } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  ScrollView
+} from "react-native";
+import QRCodeScanner from "react-native-qrcode-scanner";
+import PhotoLists from "./Components/PhotoLists";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const KEY_PASS = "true";
+const WORDS =
+  "\"The design is really good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to need some work it's very cuhile the actual UX is going to need some work it's very cuhile the actual UX is going to need some work it's very cuhile the actual UX is going to need some work it's very customizable and built on a solid code base. Definitely, a product to \"grow\" with if you are building a listing directory.\"";
 
 export default class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      text: '',
+      text: "",
       textDetected: false
-    }
+    };
   }
-  
+
   onSuccess(e) {
-    console.log ("qr data is: ", e.data);
-    this.setState({
-      text: e.data,
-      textDetected: true
-    })
+    console.log("qr data is: ", e.data);
+    if ((e.data = KEY_PASS)) {
+      this.setState({
+        text: e.data,
+        textDetected: true
+      });
+    }
   }
 
   render() {
     if (!this.state.textDetected) {
-
+      return <QRCodeScanner onRead={this.onSuccess.bind(this)} />;
+    } else {
       return (
-        <QRCodeScanner
-        onRead={this.onSuccess.bind(this)}
-        topContent={
-          <Text style={styles.centerText}>
-            Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code.
-          </Text>
-        }
-        bottomContent={
-          <TouchableOpacity style={styles.buttonTouchable}>
-            <Text style={styles.buttonText}>OK. Got it!</Text>
-          </TouchableOpacity>
-        }
-        />
-        );
-      } else {
-        return (
-          <View>
-            <Text>
-              {this.state.text}
-            </Text>
+        <ImageBackground
+          style={styles.container}
+          imageStyle={{
+            resizeMode: "cover"
+          }}
+          source={require("./Images/1.jpg")}
+        >
+          <View style={styles.shadowBG}>
+            <ScrollView style={{ flex: 1 }}>
+              <View style={styles.info}>
+                <Text style={styles.title}>{"You are My Love"}</Text>
+                <Text style={styles.centerText}>{WORDS}</Text>
+              </View>
+              <PhotoLists />
+            </ScrollView>
           </View>
-        )
-      }
+        </ImageBackground>
+      );
     }
+  }
 }
 
 const styles = StyleSheet.create({
-  centerText: {
+  container: {
+    flex: 1
+  },
+  shadowBG: {
     flex: 1,
-    fontSize: 18,
-    padding: 32,
-    color: '#777',
+    backgroundColor: "rgba(0, 0, 0, 0.7)"
   },
-  textBold: {
-    fontWeight: '500',
-    color: '#000',
+  info: {},
+  centerText: {
+    fontSize: 20,
+    padding: 10,
+    color: "#eee",
+    fontFamily: "cursive"
   },
-  buttonText: {
-    fontSize: 21,
-    color: 'rgb(0,122,255)',
-  },
-  buttonTouchable: {
-    padding: 16,
-  },
+  title: {
+    fontSize: 40,
+    alignSelf: "center",
+    marginTop: 10,
+    color: "gold",
+    fontFamily: "cursive",
+    fontWeight: "bold",
+    marginBottom: 20
+  }
 });
