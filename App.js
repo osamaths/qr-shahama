@@ -10,17 +10,17 @@
 import React, { Component } from "react";
 import {
   StyleSheet,
-  Text,
+  StatusBar,
   View,
   ImageBackground,
   ScrollView
 } from "react-native";
 import QRCodeScanner from "react-native-qrcode-scanner";
 import PhotoLists from "./Components/PhotoLists";
+import Letter from "./Components/Letter";
+import { decryptKey } from "./src/Actions/requsets";
 
-const KEY_PASS = "true";
-const WORDS =
-  "\"The design is really good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to needly good and while the actual UX is going to need some work it's very cuhile the actual UX is going to need some work it's very cuhile the actual UX is going to need some work it's very cuhile the actual UX is going to need some work it's very customizable and built on a solid code base. Definitely, a product to \"grow\" with if you are building a listing directory.\"";
+const KEY_PASS = "true" || "Malfouf is the best food ever.";
 
 export default class App extends Component {
   constructor(props) {
@@ -28,21 +28,34 @@ export default class App extends Component {
 
     this.state = {
       text: "",
-      textDetected: false
+      textDetected: false,
+      loading: false
     };
   }
 
   onSuccess(e) {
-    console.log("qr data is: ", e.data);
-    if ((e.data = KEY_PASS)) {
+    console.log("qr data is:", e.data);
+
+    this.setState({
+      loading: true
+    });
+
+    if (decryptKey(e.data) === KEY_PASS) {
       this.setState({
         text: e.data,
-        textDetected: true
+        textDetected: true,
+        loading: true
+      });
+    } else {
+      this.setState({
+        loading: false
       });
     }
   }
 
   render() {
+    // console.log(encryption.encrypt(KEY_PASS));
+
     if (!this.state.textDetected) {
       return <QRCodeScanner onRead={this.onSuccess.bind(this)} />;
     } else {
@@ -54,11 +67,11 @@ export default class App extends Component {
           }}
           source={require("./Images/1.jpg")}
         >
+          <StatusBar hidden />
           <View style={styles.shadowBG}>
             <ScrollView style={{ flex: 1 }}>
               <View style={styles.info}>
-                <Text style={styles.title}>{"You are My Love"}</Text>
-                <Text style={styles.centerText}>{WORDS}</Text>
+                <Letter />
               </View>
               <PhotoLists />
             </ScrollView>
@@ -77,20 +90,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0.7)"
   },
-  info: {},
-  centerText: {
-    fontSize: 20,
-    padding: 10,
-    color: "#eee",
-    fontFamily: "cursive"
-  },
-  title: {
-    fontSize: 40,
-    alignSelf: "center",
-    marginTop: 10,
-    color: "gold",
-    fontFamily: "cursive",
-    fontWeight: "bold",
-    marginBottom: 20
-  }
+  info: {}
 });

@@ -17,7 +17,7 @@ export default class Photo extends Component {
       <View style={styles.container}>
         <Image
           source={this.state.path}
-          style={{ borderRadius: 5 }}
+          style={{ borderRadius: 2 }}
           width={width * 0.95}
         />
       </View>
