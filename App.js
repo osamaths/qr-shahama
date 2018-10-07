@@ -20,6 +20,7 @@ import {
 import QRCodeScanner from "react-native-qrcode-scanner";
 import PhotoLists from "./Components/PhotoLists";
 import Letter from "./Components/Letter";
+import Loading from "./Components/Loading";
 // import ActivityIndicatorHeart from "./Components/ActivityIndicatorHeart";
 // import { decryptKey } from "./src/Actions/requsets";
 
@@ -30,7 +31,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      textDetected: false,
+      textDetected: true,
       loading: false
     };
     this.decryptKey = this.decryptKey.bind(this);
@@ -99,9 +100,9 @@ export default class App extends Component {
     // console.log(encryption.encrypt(KEY_PASS));
     if (this.state.loading) {
       return (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        />
+        <View style={{ flex: 1 }}>
+          <Loading />
+        </View>
       );
     }
     if (!this.state.textDetected && !this.state.loading) {
@@ -113,7 +114,7 @@ export default class App extends Component {
           imageStyle={{
             resizeMode: "cover"
           }}
-          source={require("./Images/1.jpg")}
+          source={require("./Images/photos/1.jpg")}
         >
           <StatusBar hidden />
           <View style={styles.shadowBG}>
