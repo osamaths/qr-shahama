@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 50,
     alignSelf: "center",
-    color: "gold",
+    color: "#E5DC30",
     marginVertical: 10,
     paddingTop: 30,
     fontFamily: "samt-7017",
