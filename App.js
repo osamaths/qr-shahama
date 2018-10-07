@@ -13,16 +13,13 @@ import {
   StatusBar,
   View,
   ImageBackground,
-  ScrollView,
-  ActivityIndicator,
-  Image
+  ScrollView
 } from "react-native";
 import QRCodeScanner from "react-native-qrcode-scanner";
 import PhotoLists from "./Components/PhotoLists";
 import Letter from "./Components/Letter";
 import Loading from "./Components/Loading";
-// import ActivityIndicatorHeart from "./Components/ActivityIndicatorHeart";
-// import { decryptKey } from "./src/Actions/requsets";
+import { backgrounds } from "./src/Actions/Storage";
 
 const KEY_PASS = "Malfouf is the best food ever.";
 
@@ -34,18 +31,17 @@ export default class App extends Component {
       textDetected: true,
       loading: false
     };
+
     this.decryptKey = this.decryptKey.bind(this);
   }
+
   checkToken(decryptedText) {
-    console.log("decryptedText is:", decryptedText);
     if (decryptedText === KEY_PASS) {
-      console.log("correct token");
       this.setState({
         textDetected: true,
         loading: false
       });
     } else {
-      console.log("wrong token");
       this.setState({
         loading: false
       });
@@ -75,7 +71,6 @@ export default class App extends Component {
         // You can also try "return response.text();"
       })
       .then(responseJson => {
-        console.log("responseJson", responseJson._bodyText);
         this.checkToken(responseJson._bodyText);
         return responseJson;
       })
@@ -114,7 +109,7 @@ export default class App extends Component {
           imageStyle={{
             resizeMode: "cover"
           }}
-          source={require("./Images/photos/1.jpg")}
+          source={backgrounds[Math.floor(Math.random() * backgrounds.length)]}
         >
           <StatusBar hidden />
           <View style={styles.shadowBG}>
@@ -137,7 +132,7 @@ const styles = StyleSheet.create({
   },
   shadowBG: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.7)"
+    backgroundColor: "rgba(0, 0, 0, 0.5)"
   },
   info: {}
 });
