@@ -1,7 +1,7 @@
 export const images = [
-  require("../../Images/test.jpg"),
-  require("../../Images/1.jpg"),
-  require("../../Images/2.jpg"),
-  require("../../Images/3.jpg"),
-  require("../../Images/background.png")
+  require("../../Images/photos/test.jpg"),
+  require("../../Images/photos/1.jpg"),
+  require("../../Images/photos/2.jpg"),
+  require("../../Images/photos/3.jpg"),
+  require("../../Images/photos/background.png")
 ];

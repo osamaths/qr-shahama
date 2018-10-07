@@ -13,50 +13,98 @@ import {
   StatusBar,
   View,
   ImageBackground,
-  ScrollView
+  ScrollView,
+  ActivityIndicator,
+  Image
 } from "react-native";
 import QRCodeScanner from "react-native-qrcode-scanner";
 import PhotoLists from "./Components/PhotoLists";
 import Letter from "./Components/Letter";
-import { decryptKey } from "./src/Actions/requsets";
+// import ActivityIndicatorHeart from "./Components/ActivityIndicatorHeart";
+// import { decryptKey } from "./src/Actions/requsets";
 
-const KEY_PASS = "true" || "Malfouf is the best food ever.";
+const KEY_PASS = "Malfouf is the best food ever.";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      text: "",
       textDetected: false,
       loading: false
     };
+    this.decryptKey = this.decryptKey.bind(this);
   }
-
-  onSuccess(e) {
-    console.log("qr data is:", e.data);
-
-    this.setState({
-      loading: true
-    });
-
-    if (decryptKey(e.data) === KEY_PASS) {
+  checkToken(decryptedText) {
+    console.log("decryptedText is:", decryptedText);
+    if (decryptedText === KEY_PASS) {
+      console.log("correct token");
       this.setState({
-        text: e.data,
         textDetected: true,
-        loading: true
+        loading: false
       });
     } else {
+      console.log("wrong token");
       this.setState({
         loading: false
       });
     }
   }
 
+  decryptKey = encrypted => {
+    var req = {
+      method: "POST",
+      headers: {
+        Accepts: "application/json",
+        "content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        encrypted: encrypted
+      })
+    };
+    var url = "https://qr-shahama-server.herokuapp.com/decrypt";
+
+    fetch(url, req)
+      .then(response => {
+        // In this case, we check the content-type of the response
+        if (response.headers.get("content-type").match(/application\/json/)) {
+          return response.json();
+        }
+        return response;
+        // You can also try "return response.text();"
+      })
+      .then(responseJson => {
+        console.log("responseJson", responseJson._bodyText);
+        this.checkToken(responseJson._bodyText);
+        return responseJson;
+      })
+      .catch(err => {
+        console.log("Error", err);
+        return "Error";
+      });
+  };
+
+  onSuccess(e) {
+    this.setState(
+      {
+        loading: true
+      },
+      () => {
+        this.decryptKey(e.data);
+      }
+    );
+  }
+
   render() {
     // console.log(encryption.encrypt(KEY_PASS));
-
-    if (!this.state.textDetected) {
+    if (this.state.loading) {
+      return (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        />
+      );
+    }
+    if (!this.state.textDetected && !this.state.loading) {
       return <QRCodeScanner onRead={this.onSuccess.bind(this)} />;
     } else {
       return (

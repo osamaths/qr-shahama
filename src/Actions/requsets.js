@@ -3,7 +3,7 @@ export const decryptKey = encrypted => {
     method: "POST",
     headers: {
       Accepts: "application/json",
-      "Content-Type": "application/json"
+      "content-Type": "application/json"
     },
     body: JSON.stringify({
       encrypted: encrypted
