@@ -40,6 +40,9 @@
 		6C0550DDF6584C799B607C54 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C92B4873471D4B73A8914BD3 /* libRNCamera.a */; };
 		4A2588EA49CB4AC7ABAC0C81 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA171EABDA744A8794289A71 /* libReactNativePermissions.a */; };
 		F17576C57CC1498B80E7102E /* dywani.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBEE700644E8449D8FC9289D /* dywani.ttf */; };
+		5069EED9FB2741ED8618E7C1 /* samt-7017.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFC07D03D0C340D6B065A5B5 /* samt-7017.ttf */; };
+		917E6943A379477E9151E5C1 /* MCS-Diwany4-S_I-normal.-1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34D1F73896A44E868A13E1E8 /* MCS-Diwany4-S_I-normal.-1.ttf */; };
+		6ED71CA1616E4B9989397616 /* DIVANMAZ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0770BFD1151417DA548CABA /* DIVANMAZ.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -350,6 +353,9 @@
 		A6AC52F5A06B423D8FAA7C78 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativePermissions.xcodeproj"; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		AA171EABDA744A8794289A71 /* libReactNativePermissions.a */ = {isa = PBXFileReference; name = "libReactNativePermissions.a"; path = "libReactNativePermissions.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		BBEE700644E8449D8FC9289D /* dywani.ttf */ = {isa = PBXFileReference; name = "dywani.ttf"; path = "../assets/fonts/dywani.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AFC07D03D0C340D6B065A5B5 /* samt-7017.ttf */ = {isa = PBXFileReference; name = "samt-7017.ttf"; path = "../assets/fonts/samt-7017.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		34D1F73896A44E868A13E1E8 /* MCS-Diwany4-S_I-normal.-1.ttf */ = {isa = PBXFileReference; name = "MCS-Diwany4-S_I-normal.-1.ttf"; path = "../assets/fonts/MCS-Diwany4-S_I-normal.-1.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C0770BFD1151417DA548CABA /* DIVANMAZ.ttf */ = {isa = PBXFileReference; name = "DIVANMAZ.ttf"; path = "../assets/fonts/DIVANMAZ.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -619,6 +625,9 @@
 			isa = "PBXGroup";
 			children = (
 				BBEE700644E8449D8FC9289D /* dywani.ttf */,
+				AFC07D03D0C340D6B065A5B5 /* samt-7017.ttf */,
+				34D1F73896A44E868A13E1E8 /* MCS-Diwany4-S_I-normal.-1.ttf */,
+				C0770BFD1151417DA548CABA /* DIVANMAZ.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1071,6 +1080,9 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				F17576C57CC1498B80E7102E /* dywani.ttf in Resources */,
+				5069EED9FB2741ED8618E7C1 /* samt-7017.ttf in Resources */,
+				917E6943A379477E9151E5C1 /* MCS-Diwany4-S_I-normal.-1.ttf in Resources */,
+				6ED71CA1616E4B9989397616 /* DIVANMAZ.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

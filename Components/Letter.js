@@ -21,10 +21,10 @@ export default class Letter extends Component {
 
 const styles = StyleSheet.create({
   centerText: {
-    fontSize: 24,
+    fontSize: 30,
     padding: 10,
     color: "peru",
-    fontFamily: "dywani"
+    fontFamily: "DIVANMAZ"
     // fontWeight: "600"
   },
   title: {

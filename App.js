@@ -31,7 +31,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      textDetected: false,
+      textDetected: true,
       loading: false
     };
     this.decryptKey = this.decryptKey.bind(this);

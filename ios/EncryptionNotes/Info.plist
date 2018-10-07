@@ -56,6 +56,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>dywani.ttf</string>
+		<string>samt-7017.ttf</string>
+		<string>MCS-Diwany4-S_I-normal.-1.ttf</string>
+		<string>DIVANMAZ.ttf</string>
 	</array>
 </dict>
 </plist>
