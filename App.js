@@ -28,7 +28,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      textDetected: true,
+      textDetected: false,
       loading: false
     };
 
@@ -92,7 +92,6 @@ export default class App extends Component {
   }
 
   render() {
-    // console.log(encryption.encrypt(KEY_PASS));
     if (this.state.loading) {
       return (
         <View style={{ flex: 1 }}>
