@@ -3,6 +3,7 @@ import { View, Text, TouchableHighlight, StyleSheet } from "react-native";
 var t = require("tcomb-form-native");
 var Form = t.form.Form;
 import user from "../src/Actions/secret.json";
+import TouchID from "react-native-touch-id";
 import { Actions } from "react-native-router-flux";
 
 var Person = t.struct({
@@ -20,8 +21,23 @@ export default class Login extends Component {
 
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this._getFormOptions = this._getFormOptions.bind(this);
+    this._scanFingerprint = this._scanFingerprint.bind(this);
   }
-
+  _scanFingerprint() {
+    TouchID.authenticate("Please my sweet wife put your finger on sensor <3", {
+      title: "Authentication Required", // Android
+      imageColor: "#e00606", // Android
+      imageErrorColor: "#ff0000", // Android
+      sensorDescription: "Touch sensor", // Android
+      sensorErrorDescription: "Failed", // Android
+      cancelText: "Cancel", // Android
+      unifiedErrors: false // use unified error messages (default false)
+    })
+      .then(success => {
+        Actions.qr({ isPrivate: false });
+      })
+      .catch(error => {});
+  }
   componentDidMount() {
     // give focus to the name textbox
     this.refs.form.getComponent("username").refs.input.focus();
@@ -35,7 +51,7 @@ export default class Login extends Component {
         user.password
     ) {
       // Go to next page
-      Actions.qr();
+      Actions.qr({ isPrivate: true });
     }
   }
   _getFormOptions() {
@@ -67,7 +83,12 @@ export default class Login extends Component {
     var options = this._getFormOptions();
     return (
       <View style={styles.container}>
-        <Text style={styles.pageTitle}>Login</Text>
+        <TouchableHighlight
+          onLongPress={() => this._scanFingerprint()}
+          underlayColor="transparent"
+        >
+          <Text style={styles.pageTitle}>Login</Text>
+        </TouchableHighlight>
         <View style={styles.formContainer}>
           <Form ref="form" type={Person} options={options} />
           <TouchableHighlight

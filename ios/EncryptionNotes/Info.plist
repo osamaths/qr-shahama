@@ -60,5 +60,7 @@
 		<string>MCS-Diwany4-S_I-normal.-1.ttf</string>
 		<string>DIVANMAZ.ttf</string>
 	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Enabling Face ID allows you quick and secure access to your account.</string>
 </dict>
 </plist>

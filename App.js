@@ -12,6 +12,7 @@ import { StyleSheet } from "react-native";
 import { Router, Scene } from "react-native-router-flux";
 import Login from "./Components/Login";
 import QR from "./Components/QR";
+import Fingerprint from "./Components/FingerPrint";
 
 export default class App extends Component {
   constructor(props) {

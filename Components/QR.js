@@ -20,7 +20,7 @@ import QRCodeScanner from "react-native-qrcode-scanner";
 import PhotoLists from "./PhotoLists";
 import Letter from "./Letter";
 import Loading from "./Loading";
-import { backgrounds } from "../src/Actions/Storage";
+import { backgrounds, images } from "../src/Actions/Storage";
 
 const KEY_PASS = "Malfouf is the best food ever.";
 
@@ -31,7 +31,7 @@ export default class QR extends Component {
     this.state = {
       textDetected: false,
       loading: false,
-      isPrivate: false
+      isPrivate: this.props.isPrivate
     };
 
     this.decryptKey = this.decryptKey.bind(this);
@@ -119,7 +119,9 @@ export default class QR extends Component {
               <View style={styles.info}>
                 <Letter />
               </View>
-              <PhotoLists />
+              <PhotoLists
+                photos={this.state.isPrivate ? images.private : images.public}
+              />
             </ScrollView>
           </View>
         </ImageBackground>

@@ -7,17 +7,12 @@ export default class PhotoLists extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: []
+      photos: this.props.photos
     };
   }
 
-  componentDidMount() {
-    this.setState({ photos: images });
-  }
   _renderPhotos() {
     if (this.state.photos.length) {
-      console.log("photos length is: ", this.state.photos.length);
-
       return (
         <View style={styles.container}>
           {this.state.photos.map((obj, index) => (
