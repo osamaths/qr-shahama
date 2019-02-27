@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import Image from "react-native-scalable-image";
+import Letter from "./Letter";
 
 export default class Photo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      path: this.props.path
+      obj: this.props.obj
     };
   }
 
@@ -15,11 +16,14 @@ export default class Photo extends Component {
     console.log("path is: ", width);
     return (
       <View style={styles.container}>
-        <Image
-          source={this.state.path}
-          style={{ borderRadius: 2 }}
-          width={width * 0.95}
-        />
+        <View style={styles.imageContainer}>
+          <Image
+            source={this.state.obj.path}
+            style={{ borderRadius: 2 }}
+            width={width * 0.95}
+          />
+        </View>
+        <Letter text={this.state.obj.text} />
       </View>
     );
   }
@@ -27,13 +31,14 @@ export default class Photo extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
+  },
+  imageContainer: {
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 2,
     borderRadius: 5,
+    borderWidth: 2,
     elevation: 10,
-    borderColor: "silver",
-    marginVertical: 10
+    borderColor: "silver"
   }
 });

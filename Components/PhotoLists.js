@@ -20,8 +20,8 @@ export default class PhotoLists extends Component {
 
       return (
         <View style={styles.container}>
-          {this.state.photos.map((path, index) => (
-            <Photo path={path} key={index} />
+          {this.state.photos.map((obj, index) => (
+            <Photo obj={obj} key={index} />
           ))}
         </View>
       );
