@@ -31,7 +31,7 @@ export default class QR extends Component {
     this.state = {
       textDetected: false,
       loading: false,
-      isPrivate: this.props.isPrivate
+      isPrivate: false
     };
 
     this.decryptKey = this.decryptKey.bind(this);
