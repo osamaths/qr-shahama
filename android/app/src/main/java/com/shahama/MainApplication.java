@@ -1,4 +1,4 @@
-package com.encryptionnotes;
+package com.shahama;
 
 import android.app.Application;
 

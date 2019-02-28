@@ -23,8 +23,8 @@ export default class App extends Component {
     return (
       <Router>
         <Scene key="root" hideNavBar={true}>
-          <Scene key="login" component={Login} title="Login" />
-          <Scene key="qr" component={QR} title="QR Code" initial />
+          <Scene key="login" component={Login} title="Login" initial />
+          <Scene key="qr" component={QR} title="QR Code" />
         </Scene>
       </Router>
     );
